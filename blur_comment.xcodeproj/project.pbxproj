@@ -14,6 +14,9 @@
 		B2E47A4D1B0AC22300C24B52 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2E47A4C1B0AC22300C24B52 /* Images.xcassets */; };
 		B2E47A501B0AC22300C24B52 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E47A4E1B0AC22300C24B52 /* LaunchScreen.xib */; };
 		B2E47A5C1B0AC22300C24B52 /* blur_commentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E47A5B1B0AC22300C24B52 /* blur_commentTests.m */; };
+		B2E47A701B0AD97900C24B52 /* BlurCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E47A6F1B0AD97900C24B52 /* BlurCommentView.m */; };
+		B2E47A731B0AD9B800C24B52 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E47A721B0AD9B800C24B52 /* UIImageEffects.m */; };
+		B2E47A751B0ADFAC00C24B52 /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2E47A741B0ADFAC00C24B52 /* 2@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,11 @@
 		B2E47A551B0AC22300C24B52 /* blur_commentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = blur_commentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2E47A5A1B0AC22300C24B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2E47A5B1B0AC22300C24B52 /* blur_commentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = blur_commentTests.m; sourceTree = "<group>"; };
+		B2E47A6E1B0AD97900C24B52 /* BlurCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurCommentView.h; sourceTree = "<group>"; };
+		B2E47A6F1B0AD97900C24B52 /* BlurCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurCommentView.m; sourceTree = "<group>"; };
+		B2E47A711B0AD9B800C24B52 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
+		B2E47A721B0AD9B800C24B52 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
+		B2E47A741B0ADFAC00C24B52 /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +89,7 @@
 		B2E47A3E1B0AC22300C24B52 /* blur_comment */ = {
 			isa = PBXGroup;
 			children = (
+				B2E47A6D1B0AD97900C24B52 /* BlurCommentView */,
 				B2E47A431B0AC22300C24B52 /* AppDelegate.h */,
 				B2E47A441B0AC22300C24B52 /* AppDelegate.m */,
 				B2E47A461B0AC22300C24B52 /* ViewController.h */,
@@ -117,6 +126,18 @@
 				B2E47A5A1B0AC22300C24B52 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B2E47A6D1B0AD97900C24B52 /* BlurCommentView */ = {
+			isa = PBXGroup;
+			children = (
+				B2E47A711B0AD9B800C24B52 /* UIImageEffects.h */,
+				B2E47A721B0AD9B800C24B52 /* UIImageEffects.m */,
+				B2E47A6E1B0AD97900C24B52 /* BlurCommentView.h */,
+				B2E47A6F1B0AD97900C24B52 /* BlurCommentView.m */,
+				B2E47A741B0ADFAC00C24B52 /* 2@2x.png */,
+			);
+			path = BlurCommentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +223,7 @@
 				B2E47A4B1B0AC22300C24B52 /* Main.storyboard in Resources */,
 				B2E47A501B0AC22300C24B52 /* LaunchScreen.xib in Resources */,
 				B2E47A4D1B0AC22300C24B52 /* Images.xcassets in Resources */,
+				B2E47A751B0ADFAC00C24B52 /* 2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +244,8 @@
 				B2E47A481B0AC22300C24B52 /* ViewController.m in Sources */,
 				B2E47A451B0AC22300C24B52 /* AppDelegate.m in Sources */,
 				B2E47A421B0AC22300C24B52 /* main.m in Sources */,
+				B2E47A731B0AD9B800C24B52 /* UIImageEffects.m in Sources */,
+				B2E47A701B0AD97900C24B52 /* BlurCommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +440,7 @@
 				B2E47A611B0AC22300C24B52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2E47A621B0AC22300C24B52 /* Build configuration list for PBXNativeTarget "blur_commentTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +449,7 @@
 				B2E47A641B0AC22300C24B52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

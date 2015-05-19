@@ -7,18 +7,18 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>2E166DA8-1508-45FD-92E7-480D3005DBCC</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>blur_comment</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5C22E2037CE1F443308702EE81B065B01E0052B4</key>
 		<string>github.com:davidear/blur_comment.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>blur_comment/blur_comment.xcodeproj/project.xcworkspace</string>
+	<string>blur_comment.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5C22E2037CE1F443308702EE81B065B01E0052B4</key>
-		<string>../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:davidear/blur_comment.git</string>
