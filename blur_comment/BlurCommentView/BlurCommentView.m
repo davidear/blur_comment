@@ -3,35 +3,34 @@
 //  BeaconMall
 //
 //  Created by dai.fengyi on 15/5/15.
-//  Copyright (c) 2015年 zkjinshi. All rights reserved.
+//  Copyright (c) 2015年 childrenOurFuture. All rights reserved.
 //
 
 #import "BlurCommentView.h"
 #import "UIImageEffects.h"
 #define ANIMATE_DURATION    0.3f
-
-#define kSheetViewHeight    156
+#define kMarginWH           10
+#define kButtonWidth        50
+#define kButtonHeight       30
+#define kTextFont           [UIFont systemFontOfSize:14]
+#define kTextViewHeight     100
+#define kSheetViewHeight    (kMarginWH * 3 + kButtonHeight + kTextViewHeight)
 @interface BlurCommentView ()
 @property (strong, nonatomic) SuccessBlock success;
+@property (weak, nonatomic) id<BlurCommentViewDelegate> delegate;
 @property (strong, nonatomic) UIView *sheetView;
 @property (strong, nonatomic) UITextView *commentTextView;
 @end
 @implementation BlurCommentView
-{
-//    UIView *_sheetView;
-    CGFloat _keyboardHeight;
-    UITextView *_commentTextView;
-}
-
-+ (void)commentshowInView:(UIView *)view success:(SuccessBlock)success
++ (void)commentshowInView:(UIView *)view success:(SuccessBlock)success delegate:(id <BlurCommentViewDelegate>)delegate
 {
     BlurCommentView *commentView = [[BlurCommentView alloc] initWithFrame:view.bounds];
     if (commentView) {
         //增加EventResponsor
         [commentView addEventResponsors];
-        //block
+        //block or delegate
         commentView.success = success;
-        
+        commentView.delegate = delegate;
         //截图并虚化
         commentView.image = [UIImageEffects imageByApplyingLightEffectToImage:[commentView snapShot:view]];
         
@@ -40,12 +39,27 @@
         [commentView.commentTextView becomeFirstResponder];
     }
 }
-
+#pragma mark - 外部调用
 + (void)commentshowSuccess:(SuccessBlock)success
 {
-    [BlurCommentView commentshowInView:[UIApplication sharedApplication].keyWindow success:success];
+    [BlurCommentView commentshowInView:[UIApplication sharedApplication].keyWindow success:success delegate:nil];
 }
 
++ (void)commentshowDelegate:(id<BlurCommentViewDelegate>)delegate
+{
+    [BlurCommentView commentshowInView:[UIApplication sharedApplication].keyWindow success:nil delegate:delegate];
+}
+
++ (void)commentshowInView:(UIView *)view success:(SuccessBlock)success
+{
+    [BlurCommentView commentshowInView:view success:success delegate:nil];
+}
+
++ (void)commentshowInView:(UIView *)view delegate:(id<BlurCommentViewDelegate>)delegate
+{
+    [BlurCommentView commentshowInView:view success:nil delegate:delegate];
+}
+#pragma mark - 内部调用
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -64,31 +78,31 @@
     _sheetView.backgroundColor = [UIColor lightGrayColor];
     
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancelButton.frame = CGRectMake(10, 10, 50, 30);
+    cancelButton.frame = CGRectMake(kMarginWH, kMarginWH, kButtonWidth, kButtonHeight);
     cancelButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    cancelButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    cancelButton.titleLabel.font = kTextFont;
     [cancelButton addTarget:self action:@selector(cancelComment:) forControlEvents:UIControlEventTouchUpInside];
     [_sheetView addSubview:cancelButton];
     
     UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    commentButton.frame = CGRectMake(_sheetView.bounds.size.width - 50 - 10, 10, 50, 30);
+    commentButton.frame = CGRectMake(_sheetView.bounds.size.width - kButtonWidth - kMarginWH, kMarginWH, kButtonWidth, kButtonHeight);
     commentButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
     [commentButton setTitle:@"发送" forState:UIControlStateNormal];
     [commentButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    commentButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    commentButton.titleLabel.font = kTextFont;
     [commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
     [_sheetView addSubview:commentButton];
     
     UILabel *label = [[UILabel alloc] init];
     label.text = @"写评论";
-    label.frame = CGRectMake((_sheetView.bounds.size.width - 30) / 2, 10, 50, 30);
-    label.font = [UIFont systemFontOfSize:14];
+    label.frame = CGRectMake((_sheetView.bounds.size.width - kButtonHeight) / 2, kMarginWH, kButtonWidth, kButtonHeight);
+    label.font = kTextFont;
     label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [_sheetView addSubview:label];
     
-    _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, _sheetView.bounds.size.height - 10 - 100, rect.size.width - 10 * 2, 100)];
+    _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(kMarginWH, _sheetView.bounds.size.height - kMarginWH - kTextViewHeight, rect.size.width - kMarginWH * 2, kTextViewHeight)];
     _commentTextView.text = nil;
     [_sheetView addSubview:_commentTextView];
 }
@@ -115,9 +129,11 @@
 - (void)comment:(id)sender {
     //发送请求
     if (_success) {
-        _success();
+        _success(_commentTextView.text);
     }
-    //
+    if ([_delegate respondsToSelector:@selector(commentDidFinished:)]) {
+        [_delegate commentDidFinished:_commentTextView.text];
+    }
     [_sheetView endEditing:YES];
 }
 
@@ -131,11 +147,11 @@
 - (void)keyboardWillShow:(NSNotification *)aNotification
 {
     NSLog(@"%@", aNotification);
-    _keyboardHeight = [[aNotification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    CGFloat keyboardHeight = [[aNotification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     NSTimeInterval animationDuration = [[aNotification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         self.alpha = 1;
-        _sheetView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - _sheetView.bounds.size.height - _keyboardHeight, _sheetView.bounds.size.width, 156);
+        _sheetView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - _sheetView.bounds.size.height - keyboardHeight, _sheetView.bounds.size.width, kSheetViewHeight);
         
     } completion:nil];
 }
@@ -146,7 +162,7 @@
     NSTimeInterval animationDuration = [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         self.alpha = 0;
-        _sheetView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, _sheetView.bounds.size.width, 156);
+        _sheetView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, _sheetView.bounds.size.width, kSheetViewHeight);
     } completion:^(BOOL finished){
         [self dismissCommentView];
     }];

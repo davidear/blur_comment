@@ -47,7 +47,7 @@
 		B2E47A6F1B0AD97900C24B52 /* BlurCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurCommentView.m; sourceTree = "<group>"; };
 		B2E47A711B0AD9B800C24B52 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		B2E47A721B0AD9B800C24B52 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
-		B2E47A741B0ADFAC00C24B52 /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
+		B2E47A741B0ADFAC00C24B52 /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "2@2x.png"; path = "BlurCommentView/2@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				B2E47A6D1B0AD97900C24B52 /* BlurCommentView */,
+				B2E47A741B0ADFAC00C24B52 /* 2@2x.png */,
 				B2E47A431B0AC22300C24B52 /* AppDelegate.h */,
 				B2E47A441B0AC22300C24B52 /* AppDelegate.m */,
 				B2E47A461B0AC22300C24B52 /* ViewController.h */,
@@ -135,7 +136,6 @@
 				B2E47A721B0AD9B800C24B52 /* UIImageEffects.m */,
 				B2E47A6E1B0AD97900C24B52 /* BlurCommentView.h */,
 				B2E47A6F1B0AD97900C24B52 /* BlurCommentView.m */,
-				B2E47A741B0ADFAC00C24B52 /* 2@2x.png */,
 			);
 			path = BlurCommentView;
 			sourceTree = "<group>";
