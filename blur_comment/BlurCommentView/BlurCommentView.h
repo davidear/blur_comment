@@ -11,7 +11,7 @@
 @optional
 - (void)commentDidFinished:(NSString *)commentText;
 @end
-typedef void(^SuccessBlock)(NSString *);
+typedef void(^SuccessBlock)(NSString *commentText);
 @interface BlurCommentView : UIImageView
 //
 + (void)commentshowInView:(UIView *)view success:(SuccessBlock)success;

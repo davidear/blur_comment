@@ -152,7 +152,6 @@
     [UIView animateWithDuration:animationDuration animations:^{
         self.alpha = 1;
         _sheetView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - _sheetView.bounds.size.height - keyboardHeight, _sheetView.bounds.size.width, kSheetViewHeight);
-        
     } completion:nil];
 }
 

@@ -20,8 +20,9 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 - (IBAction)showCommentView:(id)sender {
-    [BlurCommentView commentshowSuccess:nil];
-    
+    [BlurCommentView commentshowSuccess:^(NSString *text) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
