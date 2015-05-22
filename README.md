@@ -1,10 +1,12 @@
 # blur_comment
+demo pictures:
+(https://github.com/davidear/blur_comment/snapshot/drawing1@2x.png)
+(https://github.com/davidear/blur_comment/snapshot/drawing2@2x.png)
 
-
-使用说明：
+How to use it:
 1. #import "BlurCommentView.h"
 
 2. [BlurCommentView commentshowSuccess:^(NSString *) {
 }];
 
-可支持delegate和block来回调完成动作，即在弹出评论页面点击确定后的回调
+support Delegate or Block to callback when you click the comfirm button in the commentview
