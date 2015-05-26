@@ -143,7 +143,7 @@
     [self removeFromSuperview];
     [_sheetView removeFromSuperview];
 }
-#pragma mark -
+#pragma mark - Keyboard Notification Action
 - (void)keyboardWillShow:(NSNotification *)aNotification
 {
     NSLog(@"%@", aNotification);
