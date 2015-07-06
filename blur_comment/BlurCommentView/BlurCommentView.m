@@ -151,7 +151,7 @@
     NSTimeInterval animationDuration = [[aNotification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         self.alpha = 1;
-        _sheetView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - _sheetView.bounds.size.height - keyboardHeight, _sheetView.bounds.size.width, kSheetViewHeight);
+        _sheetView.frame = CGRectMake(0, self.superview.bounds.size.height - _sheetView.bounds.size.height - keyboardHeight, _sheetView.bounds.size.width, kSheetViewHeight);
     } completion:nil];
 }
 
@@ -161,7 +161,7 @@
     NSTimeInterval animationDuration = [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         self.alpha = 0;
-        _sheetView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, _sheetView.bounds.size.width, kSheetViewHeight);
+        _sheetView.frame = CGRectMake(0, self.superview.bounds.size.height, _sheetView.bounds.size.width, kSheetViewHeight);
     } completion:^(BOOL finished){
         [self dismissCommentView];
     }];
