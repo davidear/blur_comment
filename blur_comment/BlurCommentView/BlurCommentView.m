@@ -26,6 +26,8 @@
 {
     BlurCommentView *commentView = [[BlurCommentView alloc] initWithFrame:view.bounds];
     if (commentView) {
+        //挡住响应
+        commentView.userInteractionEnabled = YES;
         //增加EventResponsor
         [commentView addEventResponsors];
         //block or delegate
