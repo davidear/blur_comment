@@ -99,7 +99,7 @@
     
     UILabel *label = [[UILabel alloc] init];
     label.text = @"写评论";
-    label.frame = CGRectMake((_sheetView.bounds.size.width - kButtonHeight) / 2, kMarginWH, kButtonWidth, kButtonHeight);
+    label.frame = CGRectMake((_sheetView.bounds.size.width - kButtonWidth) / 2, kMarginWH, kButtonWidth, kButtonHeight);
     label.font = kTextFont;
     label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [_sheetView addSubview:label];
